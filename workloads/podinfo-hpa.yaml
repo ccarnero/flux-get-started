@@ -1,5 +1,5 @@
 apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
+kind: Deployment
 metadata:
   name: podinfo
   namespace: demo
