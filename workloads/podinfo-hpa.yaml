@@ -1,5 +1,5 @@
 apiVersion: autoscaling/v2beta1
-kind: Deployment
+kind: HorizontalPodAutoscaler
 metadata:
   name: podinfo
   namespace: demo
@@ -8,15 +8,12 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: podinfo
-  replicas: 1
-  strategy:
-    type: Recreate
-#  minReplicas: 1
-#  maxReplicas: 4
-#  metrics:
-#  - type: Resource
-#    resource:
-#      name: cpu
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
       # scale up if usage is above
       # 99% of the requested CPU (10m)
-#      targetAverageUtilization: 99
+      targetAverageUtilization: 99
